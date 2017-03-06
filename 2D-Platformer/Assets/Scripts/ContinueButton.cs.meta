@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e2592380818874177aa13491d8c73997
+timeCreated: 1488359610
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - UIPanel: {fileID: 1972881980635324, guid: 0f46cc78ef41a4c3a8f9b9e44bf8e684, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
