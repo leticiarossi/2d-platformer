@@ -17,7 +17,6 @@ public class PlatformerController : MonoBehaviour {
 	public CircleCollider2D groundCollider;
 	public LayerMask groundLayers;
 
-	int sizeOfPlayer = 1; // Number of blocks that player is made of
 	Rigidbody2D rb2d;
 	SpriteRenderer sr;
 	bool grounded;
@@ -33,7 +32,7 @@ public class PlatformerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		grounded = CheckGrounded ();
 		ApplyHorizontalInput ();
 		if (CheckJumpInput () && PermissionToJump ()) {
