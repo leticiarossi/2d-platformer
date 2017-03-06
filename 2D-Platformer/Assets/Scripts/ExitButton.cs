@@ -14,6 +14,6 @@ public class ExitButton : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		SceneManager.LoadScene(0, UnityEngine.SceneManagement.LoadSceneMode.Single);
+		SceneManager.LoadScene(0, LoadSceneMode.Single);
 	}
 }
