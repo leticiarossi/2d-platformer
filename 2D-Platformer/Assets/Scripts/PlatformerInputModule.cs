@@ -12,7 +12,7 @@ public class PlatformerInputModule : MonoBehaviour {
 		controller = GetComponent<PlatformerController>();
 	}
 
-	void FixedUpdate()
+	void Update()
 	{
 		Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		if (input.magnitude > 1) {

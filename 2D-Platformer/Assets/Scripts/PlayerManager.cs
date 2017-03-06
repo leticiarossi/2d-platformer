@@ -1,0 +1,91 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(PlatformerController))]
+public class PlayerManager : MonoBehaviour {
+
+	public Transform pickUpBlock;
+
+	PlatformerController controller;
+	CircleCollider2D groundCollider;
+	//float jump
+
+	int sizeOfPlayer = 1; // Number of blocks that player is made of 
+	int minSize = 1;
+	int maxSize = 4;
+
+	GameObject[] blocksArray = new GameObject[4]; // Reference to blocks of the player
+	float[] groundColliderPos = {-0.03f, -1.03f, -2.03f, -3.03f};
+
+	void Start () {
+		controller = GetComponent<PlatformerController>();
+		groundCollider = controller.groundCollider;
+		for (int i = 1; i < blocksArray.Length; i++) {
+			blocksArray [i] = GameObject.FindGameObjectWithTag ("Block" + i);
+			blocksArray [i].gameObject.SetActive (false);
+		}
+	}
+
+	void Update () {
+		if (Input.GetButtonDown ("PlaceBlock")) {
+			DecreaseSize ();
+		} else if (Input.GetButtonDown ("PickUpBlock") && IsOnPickUpBlock()) {
+			IncreaseSize ();
+		}
+	}
+
+	// Update player when it places a block
+	void DecreaseSize () {
+		if (sizeOfPlayer > minSize) {
+			sizeOfPlayer--;
+			PlacePickUpBlock ();
+			blocksArray [sizeOfPlayer].gameObject.SetActive (false);
+			// Change position of ground collider
+			float offsetX = groundCollider.offset.x;
+			groundCollider.offset = new Vector2 (offsetX, groundColliderPos[sizeOfPlayer-1]);
+		}
+	}
+
+	// Update player when it picks up a block
+	void IncreaseSize () {
+		if (sizeOfPlayer < maxSize) {
+			blocksArray [sizeOfPlayer].gameObject.SetActive (true);
+			sizeOfPlayer++;
+			RemovePickUpBlock ();
+			// Change position of ground collider
+			float offsetX = groundCollider.offset.x;
+			groundCollider.offset = new Vector2 (offsetX, groundColliderPos[sizeOfPlayer-1]);
+		}
+	}
+
+	// Place a pickup block where player pressed space
+	void PlacePickUpBlock() {
+		float x = blocksArray [sizeOfPlayer].gameObject.transform.position.x;
+		float y = blocksArray [sizeOfPlayer].gameObject.transform.position.y;
+
+		Instantiate(pickUpBlock, new Vector2(x, y), Quaternion.identity);
+	}
+
+	// Checks if player is on top of a pickup block
+	bool IsOnPickUpBlock () {
+		GameObject[] pickups = GameObject.FindGameObjectsWithTag ("PickUp");
+		foreach (GameObject pickup in pickups) {
+			if (groundCollider.IsTouching (pickup.GetComponent<BoxCollider2D>())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// Removes the pickup block that the player was on top on from the scene
+	void RemovePickUpBlock() {
+		GameObject[] pickups = GameObject.FindGameObjectsWithTag ("PickUp");
+		foreach (GameObject pickup in pickups) {
+			if (groundCollider.IsTouching (pickup.GetComponent<BoxCollider2D>())) {
+				Destroy (pickup);
+			}
+		}
+	}
+		
+}
