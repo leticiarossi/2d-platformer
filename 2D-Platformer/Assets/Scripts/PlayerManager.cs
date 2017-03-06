@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour {
 
 	PlatformerController controller;
 	CircleCollider2D groundCollider;
-	//float jump
 
 	int sizeOfPlayer = 1; // Number of blocks that player is made of 
 	int minSize = 1;
@@ -32,6 +31,21 @@ public class PlayerManager : MonoBehaviour {
 			DecreaseSize ();
 		} else if (Input.GetButtonDown ("PickUpBlock") && IsOnPickUpBlock()) {
 			IncreaseSize ();
+		}
+	}
+		
+	// Check if player gets to the key/door and manage opening door
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.CompareTag ("Key")) {
+			// Get key
+			other.gameObject.SetActive (false);
+			// Open door
+			GameObject door = GameObject.FindGameObjectWithTag("ClosedDoor");
+			DoorManager doorMngr = door.GetComponent<DoorManager> ();
+			doorMngr.OpenDoor ();
+		} else if (other.gameObject.CompareTag ("OpenDoor")) {
+			// Finish level
+			Debug.Log("Level complete!");
 		}
 	}
 
