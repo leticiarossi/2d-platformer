@@ -78,6 +78,7 @@
 -define:UNITY_EDITOR_OSX
 -define:UNITY_TEAM_LICENSE
 'Assets/Scripts/CameraController.cs'
+'Assets/Scripts/DoorManager.cs'
 'Assets/Scripts/ExitButton.cs'
 'Assets/Scripts/GameManager.cs'
 'Assets/Scripts/PauseMenu.cs'
