@@ -84,7 +84,6 @@ public class PlatformerController : MonoBehaviour {
 
 	void UpdateAnimations () {
 		anim.SetBool ("grounded", grounded);
-//		anim.SetBool ("crouched", Input.GetButtonDown ("PickUpBlock"));
 		anim.SetFloat ("speed", Mathf.Abs (rb2d.velocity.x));
 		if (lastJumpTime == Time.time) {
 			anim.SetTrigger ("jump");
