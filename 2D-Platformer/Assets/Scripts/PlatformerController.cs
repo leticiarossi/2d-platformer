@@ -19,6 +19,7 @@ public class PlatformerController : MonoBehaviour {
 
 	Rigidbody2D rb2d;
 	SpriteRenderer sr;
+	Animator anim;
 	bool grounded;
 
 	float lostGroundingTime;
@@ -28,6 +29,7 @@ public class PlatformerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
+		anim = GetComponent<Animator> ();
 		sr = GetComponent<SpriteRenderer> ();
 	}
 	
@@ -38,6 +40,7 @@ public class PlatformerController : MonoBehaviour {
 		if (CheckJumpInput () && PermissionToJump ()) {
 			Jump ();
 		}
+		UpdateAnimations ();
 	}
 
 	void ApplyHorizontalInput () {
@@ -77,5 +80,17 @@ public class PlatformerController : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	void UpdateAnimations () {
+		anim.SetBool ("grounded", grounded);
+//		anim.SetBool ("crouched", Input.GetButtonDown ("PickUpBlock"));
+		anim.SetFloat ("speed", Mathf.Abs (rb2d.velocity.x));
+		if (lastJumpTime == Time.time) {
+			anim.SetTrigger ("jump");
+		}
+		if (Input.GetButton ("PickUpBlock") || Input.GetButton ("PlaceBlock")) {
+			anim.SetTrigger ("crouched");
+		} 
 	}
 }
