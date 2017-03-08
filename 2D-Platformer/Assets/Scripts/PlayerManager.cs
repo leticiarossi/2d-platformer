@@ -52,6 +52,7 @@ public class PlayerManager : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
 			// Finish level
 			Debug.Log("Level complete!");
+
 		}
 	}
 
