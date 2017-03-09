@@ -1,8 +1,12 @@
 sceneSetups:
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 - path: Assets/Scenes/MainGame.unity
 =======
 - path: Assets/Scenes/Level4.unity
 >>>>>>> origin/master
+=======
+- path: Assets/Scenes/Level2.unity
+>>>>>>> Stashed changes
   isLoaded: 1
   isActive: 1
