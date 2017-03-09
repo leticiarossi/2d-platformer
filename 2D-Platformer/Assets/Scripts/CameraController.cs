@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
 
 	public GameObject player;
 
-	private Vector3 cameraOffset;	//Stores the offset distance between the player and the character
+	private Vector3 cameraOffset;	//Stores the offset distance between the player and the camera
 
 	// Use this for initialization
 	void Start () {
