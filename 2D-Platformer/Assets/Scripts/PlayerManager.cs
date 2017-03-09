@@ -6,6 +6,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
 	public Transform pickUpBlock;
+	public float timeInAir = 0;
+	public float timeTilDeath = 10;
+
+	private bool dead = false;
 
 	PlatformerController controller;
 	CircleCollider2D groundCollider;
@@ -32,6 +36,8 @@ public class PlayerManager : MonoBehaviour {
 		} else if (Input.GetButtonDown ("PickUpBlock") && IsOnPickUpBlock()) {
 			IncreaseSize ();
 		}
+
+		//if(!controller.
 	}
 		
 	// Check if player gets to the key/door and manage opening door
@@ -46,6 +52,7 @@ public class PlayerManager : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
 			// Finish level
 			Debug.Log("Level complete!");
+
 		}
 	}
 
