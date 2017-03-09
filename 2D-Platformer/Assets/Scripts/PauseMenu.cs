@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
 
-	public GameObject UIPanel;
+	public GameObject UIPanel1;
+	public GameObject UIPanel2;
 
 	void Start ()
 	{
-		UIPanel.SetActive (false);
+		UIPanel1.SetActive (false);
+		UIPanel2.SetActive (false);
 	}
 }
