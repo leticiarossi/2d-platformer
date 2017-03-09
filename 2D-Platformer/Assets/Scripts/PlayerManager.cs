@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour {
 	public float timeTilDeath = 10;
 	public GameObject FadedKey;
 	public GameObject FilledInKey;
+	public GameObject NextLevelPanel;
 
 	private bool dead = false;
 
@@ -31,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
 			blocksArray [i] = GameObject.FindGameObjectWithTag ("Block" + i);
 			blocksArray [i].gameObject.SetActive (false);
 		}
+		NextLevelPanel.SetActive (false);
 	}
 
 	void Update () {
@@ -49,16 +51,14 @@ public class PlayerManager : MonoBehaviour {
 			// Get key
 			other.gameObject.SetActive (false);
 			//Update UI
-			FadedKey.SetActive (false);
-			FilledInKey.SetActive (true);
+			UIManager.ShowKey();
 			// Open door
 			GameObject door = GameObject.FindGameObjectWithTag("ClosedDoor");
 			DoorManager doorMngr = door.GetComponent<DoorManager> ();
 			doorMngr.OpenDoor ();
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
 			// Finish level
-			Debug.Log("Level complete!");
-
+			MenuManager.LevelDone();
 		}
 	}
 
