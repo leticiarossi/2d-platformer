@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlatformerController))]
 public class PlayerManager : MonoBehaviour {
@@ -8,6 +9,8 @@ public class PlayerManager : MonoBehaviour {
 	public Transform pickUpBlock;
 	public float timeInAir = 0;
 	public float timeTilDeath = 10;
+	public GameObject FadedKey;
+	public GameObject FilledInKey;
 
 	private bool dead = false;
 
@@ -45,6 +48,9 @@ public class PlayerManager : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Key")) {
 			// Get key
 			other.gameObject.SetActive (false);
+			//Update UI
+			FadedKey.SetActive (false);
+			FilledInKey.SetActive (true);
 			// Open door
 			GameObject door = GameObject.FindGameObjectWithTag("ClosedDoor");
 			DoorManager doorMngr = door.GetComponent<DoorManager> ();
