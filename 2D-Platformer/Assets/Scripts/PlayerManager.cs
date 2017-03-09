@@ -55,7 +55,6 @@ public class PlayerManager : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
 			// Finish level
 			MenuManager.LevelDone();
-			Time.timeScale = 0;
 		}
 	}
 
