@@ -9,9 +9,6 @@ public class PlayerManager : MonoBehaviour {
 	public Transform pickUpBlock;
 	public float timeInAir = 0;
 	public float timeTilDeath = 10;
-	public GameObject FadedKey;
-	public GameObject FilledInKey;
-	public GameObject NextLevelPanel;
 
 	private bool dead = false;
 
@@ -32,7 +29,6 @@ public class PlayerManager : MonoBehaviour {
 			blocksArray [i] = GameObject.FindGameObjectWithTag ("Block" + i);
 			blocksArray [i].gameObject.SetActive (false);
 		}
-		NextLevelPanel.SetActive (false);
 	}
 
 	void Update () {
@@ -59,6 +55,7 @@ public class PlayerManager : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
 			// Finish level
 			MenuManager.LevelDone();
+			Time.timeScale = 0;
 		}
 	}
 

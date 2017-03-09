@@ -15,6 +15,7 @@ public class ChangeLevel : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
+		Time.timeScale = 1;
 		EditorSceneManager.LoadScene(SceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
 	}
 }
