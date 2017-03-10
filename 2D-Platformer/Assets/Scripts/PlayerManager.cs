@@ -47,8 +47,8 @@ public class PlayerManager : MonoBehaviour {
 			IncreaseSize ();
 		}
 
-		if (controller.transform.position.y <= lowestPlatformPos - 8) {
-
+		if (controller.transform.position.y <= lowestPlatformPos - 10) {
+			//RELOAD SCENE
 		}
 	}
 		
