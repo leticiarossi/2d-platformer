@@ -48,6 +48,7 @@ public class PlayerManager : MonoBehaviour {
 			IncreaseSize ();
 		}
 
+		// character dies
 		if (controller.transform.position.y <= lowestPlatformPos - 8) {
 			//Freeze camera
 			cameraController.enabled = false;
