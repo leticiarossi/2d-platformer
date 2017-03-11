@@ -78,13 +78,12 @@
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
-'Assets/BouncingBox.cs'
+'Assets/Scripts/BouncingBox.cs'
 'Assets/Scripts/CameraController.cs'
 'Assets/Scripts/ChangeLevel.cs'
 'Assets/Scripts/ContinueButton.cs'
 'Assets/Scripts/DoorManager.cs'
 'Assets/Scripts/ExitButton.cs'
-'Assets/Scripts/GameManager.cs'
 'Assets/Scripts/MenuManager.cs'
 'Assets/Scripts/MovingPlatformerController.cs'
 'Assets/Scripts/PauseButton.cs'
