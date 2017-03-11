@@ -37,7 +37,7 @@ public class MovingPlatformerController : MonoBehaviour {
 
 	// Make the player a child of the platformer so the player moves with it
 	void OnCollisionEnter2D(Collision2D other) {
-		if (other.collider.gameObject.tag == "Player") {
+		if (other.collider.gameObject.tag == "Player" || other.collider.gameObject.transform.parent.tag == "Player") {
 			other.transform.parent = transform;
 		}
 	}
