@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 [RequireComponent(typeof(PlatformerController))]
 public class PlayerManager : MonoBehaviour {
 
 	public Transform pickUpBlock;
-	public float timeInAir = 0;
-	public float timeTilDeath = 10;
+	public int sceneToLoad;
+	public CameraController cameraController;
 
 	private float lowestPlatformPos;
 
@@ -47,8 +48,14 @@ public class PlayerManager : MonoBehaviour {
 			IncreaseSize ();
 		}
 
-		if (controller.transform.position.y <= lowestPlatformPos - 10) {
-			//RELOAD SCENE
+		if (controller.transform.position.y <= lowestPlatformPos - 8) {
+			//Freeze camera
+			cameraController.enabled = false;
+
+		}
+		if (controller.transform.position.y <= lowestPlatformPos - 30) {
+			//Reload scene
+			EditorSceneManager.LoadScene(sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
 		}
 	}
 		
