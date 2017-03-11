@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour {
 	public float timeInAir = 0;
 	public float timeTilDeath = 10;
 
-	private bool dead = false;
+	private float lowestPlatformPos;
 
 	PlatformerController controller;
 	CircleCollider2D groundCollider;
@@ -29,6 +29,15 @@ public class PlayerManager : MonoBehaviour {
 			blocksArray [i] = GameObject.FindGameObjectWithTag ("Block" + i);
 			blocksArray [i].gameObject.SetActive (false);
 		}
+
+		//set position of lowest object for reference of dying
+		GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+		lowestPlatformPos = float.PositiveInfinity; 
+		foreach (GameObject platform in platforms) {
+			if (platform.transform.position.y < lowestPlatformPos) {
+				lowestPlatformPos = platform.transform.position.y;
+			}
+		}
 	}
 
 	void Update () {
@@ -38,7 +47,9 @@ public class PlayerManager : MonoBehaviour {
 			IncreaseSize ();
 		}
 
-		//if(!controller.
+		if (controller.transform.position.y <= lowestPlatformPos - 10) {
+			//RELOAD SCENE
+		}
 	}
 		
 	// Check if player gets to the key/door and manage opening door
