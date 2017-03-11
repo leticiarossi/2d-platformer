@@ -37,6 +37,8 @@ public class PlatformerController : MonoBehaviour {
 	void Update () {
 		grounded = CheckGrounded ();
 		ApplyHorizontalInput ();
+		// Disconnect player from moving platform if player left it
+		RemoveFromMovingPlatform ();
 		if (CheckJumpInput () && PermissionToJump ()) {
 			Jump ();
 		}
@@ -91,5 +93,11 @@ public class PlatformerController : MonoBehaviour {
 		if (Input.GetButton ("PickUpBlock") || Input.GetButton ("PlaceBlock")) {
 			anim.SetTrigger ("crouched");
 		} 
+	}
+
+	void RemoveFromMovingPlatform () {
+		if (transform.parent != null && !grounded) {
+			transform.parent = null;
+		}
 	}
 }
