@@ -48,12 +48,12 @@ public class PlayerManager : MonoBehaviour {
 			IncreaseSize ();
 		}
 
-		// character dies
+		// Character dies
 		if (controller.transform.position.y <= lowestPlatformPos - 8) {
 			//Freeze camera
 			cameraController.enabled = false;
-
 		}
+
 		if (controller.transform.position.y <= lowestPlatformPos - 30) {
 			//Reload scene
 			EditorSceneManager.LoadScene(sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
