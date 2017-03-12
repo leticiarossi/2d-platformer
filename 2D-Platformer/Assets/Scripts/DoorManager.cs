@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script to change the door to be open.
+ */
+
 public class DoorManager : MonoBehaviour {
 
 	public Sprite spriteOpen;

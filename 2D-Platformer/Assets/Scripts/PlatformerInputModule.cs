@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script to manage player's input. Code from the script seen in class.
+ */
+
 [RequireComponent(typeof(PlatformerController))]
 public class PlatformerInputModule : MonoBehaviour {
 

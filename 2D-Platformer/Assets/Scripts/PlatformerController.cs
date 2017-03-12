@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script to control jumping of the player and animations.
+ * Most of the code is from the script from class.
+ */ 
+
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlatformerController : MonoBehaviour {
 
@@ -16,9 +21,10 @@ public class PlatformerController : MonoBehaviour {
 
 	public CircleCollider2D groundCollider;
 	public LayerMask groundLayers;
+	public AudioClip jumpSound;
 
+	AudioSource source;
 	Rigidbody2D rb2d;
-	SpriteRenderer sr;
 	Animator anim;
 	bool grounded;
 
@@ -28,9 +34,9 @@ public class PlatformerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		source = GetComponent<AudioSource> ();
 		rb2d = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
-		sr = GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +47,11 @@ public class PlatformerController : MonoBehaviour {
 		RemoveFromMovingPlatform ();
 		if (CheckJumpInput () && PermissionToJump ()) {
 			Jump ();
+			// Play jump sound
+			source.clip = jumpSound;
+			source.volume = 0.56f;
+			source.pitch = 1.33f;
+			source.PlayOneShot (jumpSound);
 		}
 		UpdateAnimations ();
 	}
