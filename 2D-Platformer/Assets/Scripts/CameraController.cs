@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script to have camera follow the player
+ */
+
 public class CameraController : MonoBehaviour {
 
 	public GameObject player;
