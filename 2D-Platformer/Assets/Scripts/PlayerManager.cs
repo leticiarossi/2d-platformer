@@ -10,8 +10,13 @@ public class PlayerManager : MonoBehaviour {
 	public Transform pickUpBlock;
 	public int sceneToLoad;
 	public CameraController cameraController;
+	public AudioClip blockSound;
+	public AudioClip keySound;
+	public AudioClip finishLevelSound;
+	public AudioClip startLevelSound;
 
 	private float lowestPlatformPos;
+	AudioSource source;
 
 	PlatformerController controller;
 	CircleCollider2D groundCollider;
@@ -24,12 +29,19 @@ public class PlayerManager : MonoBehaviour {
 	float[] groundColliderPos = {-0.03f, -1.03f, -2.03f, -3.03f};
 
 	void Start () {
+		source = GetComponent<AudioSource> ();
 		controller = GetComponent<PlatformerController>();
 		groundCollider = controller.groundCollider;
 		for (int i = 1; i < blocksArray.Length; i++) {
 			blocksArray [i] = GameObject.FindGameObjectWithTag ("Block" + i);
 			blocksArray [i].gameObject.SetActive (false);
 		}
+
+		// Play start of level sound
+		source.clip = startLevelSound;
+		source.volume = 1f;
+		source.pitch = 1f;
+		source.PlayOneShot (startLevelSound);
 
 		//set position of lowest object for reference of dying
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
@@ -65,6 +77,11 @@ public class PlayerManager : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Key")) {
 			// Get key
 			other.gameObject.SetActive (false);
+			// Play sound
+			source.clip = keySound;
+			source.volume = 1f;
+			source.pitch = 1f;
+			source.PlayOneShot (keySound);
 			//Update UI
 			UIManager.ShowKey();
 			// Open door
@@ -72,6 +89,11 @@ public class PlayerManager : MonoBehaviour {
 			DoorManager doorMngr = door.GetComponent<DoorManager> ();
 			doorMngr.OpenDoor ();
 		} else if (other.gameObject.CompareTag ("OpenDoor")) {
+			// Play sound
+			source.clip = finishLevelSound;
+			source.volume = 1f;
+			source.pitch = 1f;
+			source.PlayOneShot (finishLevelSound);
 			// Finish level
 			MenuManager.LevelDone();
 		}
@@ -80,9 +102,17 @@ public class PlayerManager : MonoBehaviour {
 	// Update player when it places a block
 	void DecreaseSize () {
 		if (sizeOfPlayer > minSize) {
+			// Play sound
+			source.clip = blockSound;
+			source.volume = 1f;
+			source.pitch = 1.1f;
+			source.PlayOneShot (blockSound);
+
+			// Update player
 			sizeOfPlayer--;
 			PlacePickUpBlock ();
 			blocksArray [sizeOfPlayer].gameObject.SetActive (false);
+
 			// Change position of ground collider
 			float offsetX = groundCollider.offset.x;
 			groundCollider.offset = new Vector2 (offsetX, groundColliderPos[sizeOfPlayer-1]);
@@ -92,9 +122,17 @@ public class PlayerManager : MonoBehaviour {
 	// Update player when it picks up a block
 	void IncreaseSize () {
 		if (sizeOfPlayer < maxSize) {
+			// Play sound
+			source.clip = blockSound;
+			source.volume = 1f;
+			source.pitch = 0.8f;
+			source.PlayOneShot (blockSound);
+
+			// Update player
 			blocksArray [sizeOfPlayer].gameObject.SetActive (true);
 			sizeOfPlayer++;
 			RemovePickUpBlock ();
+
 			// Change position of ground collider
 			float offsetX = groundCollider.offset.x;
 			groundCollider.offset = new Vector2 (offsetX, groundColliderPos[sizeOfPlayer-1]);
@@ -129,5 +167,6 @@ public class PlayerManager : MonoBehaviour {
 			}
 		}
 	}
+
 		
 }
