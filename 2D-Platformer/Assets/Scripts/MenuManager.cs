@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This class manages the various UI menus throughout the game using a singleton pattern
+ */
+
 public class MenuManager : MonoBehaviour
 {
 
@@ -19,16 +23,16 @@ public class MenuManager : MonoBehaviour
 
 	public static void LevelDone(){
 		instance.NextLevelPanel.SetActive (true);
-		Time.timeScale = 0;
+		Time.timeScale = 0; //pause background when panel is present
 	}
 
 	public static void EnablePause(){
 		instance.PauseMenu.SetActive (true);
-		Time.timeScale = 0;
+		Time.timeScale = 0; //pause background when panel is present
 	}
 
 	public static void DisablePause(){
 		instance.PauseMenu.SetActive (false);
-		Time.timeScale = 1;
+		Time.timeScale = 1; //unpause background when panel goes away
 	}
 }

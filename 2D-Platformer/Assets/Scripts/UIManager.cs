@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * This class controls the key element of the User Interface using a singleton pattern
+ */
+
 public class UIManager : MonoBehaviour
 {
 	public static UIManager instance;

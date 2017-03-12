@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+ * This class controls the exit button in the pause panel
+ */
+
 public class ExitButton : MonoBehaviour {
 
 	public Button ExButton;
