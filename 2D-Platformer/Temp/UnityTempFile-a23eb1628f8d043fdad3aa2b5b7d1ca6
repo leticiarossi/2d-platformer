@@ -90,7 +90,6 @@
 'Assets/Scripts/PlatformerController.cs'
 'Assets/Scripts/PlatformerInputModule.cs'
 'Assets/Scripts/PlayerManager.cs'
-'Assets/Scripts/StartButton.cs'
 'Assets/Scripts/UIManager.cs'
 -r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/System.Xml.Linq.dll'
