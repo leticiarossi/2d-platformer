@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
 
 /*
  * Script to manage things related to the player like placing and picking up
@@ -73,7 +72,7 @@ public class PlayerManager : MonoBehaviour {
 
 		if (controller.transform.position.y <= lowestPlatformPos - 30) {
 			// Reload scene
-			EditorSceneManager.LoadScene(sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
+			Application.LoadLevel (sceneToLoad);
 		}
 	}
 		
@@ -100,8 +99,7 @@ public class PlayerManager : MonoBehaviour {
 			source.pitch = 1f;
 			source.PlayOneShot (finishLevelSound);
 			// Finish level
-			int scene = EditorSceneManager.GetActiveScene().buildIndex;
-			MenuManager.LevelDone(scene);
+			MenuManager.LevelDone(sceneToLoad - 1);
 		}
 	}
 

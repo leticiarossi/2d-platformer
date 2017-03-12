@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
 
 /*
  * This class manages the various UI menus throughout the game using a singleton pattern
@@ -27,7 +26,7 @@ public class MenuManager : MonoBehaviour
 			instance.NextLevelPanel.SetActive (true);
 			Time.timeScale = 0; //pause background when panel is present
 		} else {
-			EditorSceneManager.LoadScene (9, UnityEngine.SceneManagement.LoadSceneMode.Single);
+			Application.LoadLevel (9);
 		}
 	}
 

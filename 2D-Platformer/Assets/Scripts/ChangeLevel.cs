@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
 using UnityEngine.UI;
 
 /*
@@ -20,6 +19,6 @@ public class ChangeLevel : MonoBehaviour {
 
 	void TaskOnClick(){
 		Time.timeScale = 1; //timeScale is changed to 0 when next "next level panel" appears, this undoes that
-		EditorSceneManager.LoadScene(SceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
+		Application.LoadLevel (SceneToLoad);
 	}
 }
