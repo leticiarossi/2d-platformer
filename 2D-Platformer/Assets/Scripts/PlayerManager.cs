@@ -100,7 +100,8 @@ public class PlayerManager : MonoBehaviour {
 			source.pitch = 1f;
 			source.PlayOneShot (finishLevelSound);
 			// Finish level
-			MenuManager.LevelDone();
+			int scene = EditorSceneManager.GetActiveScene().buildIndex;
+			MenuManager.LevelDone(scene);
 		}
 	}
 
