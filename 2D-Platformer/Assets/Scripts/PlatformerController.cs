@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script to control jumping of the player and animations.
+ * Most of the code is from the script from class.
+ */ 
+
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlatformerController : MonoBehaviour {
 

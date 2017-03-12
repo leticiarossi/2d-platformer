@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor.SceneManagement;
 
+/*
+ * Script to manage things related to the player like placing and picking up
+ * blocks, player's death and player's interactions with key and door.
+ */ 
+
 [RequireComponent(typeof(PlatformerController))]
 public class PlayerManager : MonoBehaviour {
 
@@ -15,7 +20,7 @@ public class PlayerManager : MonoBehaviour {
 	public AudioClip finishLevelSound;
 	public AudioClip startLevelSound;
 
-	private float lowestPlatformPos;
+	float lowestPlatformPos;
 	AudioSource source;
 
 	PlatformerController controller;
@@ -43,7 +48,7 @@ public class PlayerManager : MonoBehaviour {
 		source.pitch = 1f;
 		source.PlayOneShot (startLevelSound);
 
-		//set position of lowest object for reference of dying
+		// Set position of lowest object for reference of dying
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
 		lowestPlatformPos = float.PositiveInfinity; 
 		foreach (GameObject platform in platforms) {
@@ -62,12 +67,12 @@ public class PlayerManager : MonoBehaviour {
 
 		// Character dies
 		if (controller.transform.position.y <= lowestPlatformPos - 8) {
-			//Freeze camera
+			// Freeze camera
 			cameraController.enabled = false;
 		}
 
 		if (controller.transform.position.y <= lowestPlatformPos - 30) {
-			//Reload scene
+			// Reload scene
 			EditorSceneManager.LoadScene(sceneToLoad, UnityEngine.SceneManagement.LoadSceneMode.Single);
 		}
 	}
@@ -147,7 +152,7 @@ public class PlayerManager : MonoBehaviour {
 		Instantiate(pickUpBlock, new Vector2(x, y), Quaternion.identity);
 	}
 
-	// Checks if player is on top of a pickup block
+	// Check if player is on top of a pickup block
 	bool IsOnPickUpBlock () {
 		GameObject[] pickups = GameObject.FindGameObjectsWithTag ("PickUp");
 		foreach (GameObject pickup in pickups) {
@@ -158,7 +163,7 @@ public class PlayerManager : MonoBehaviour {
 		return false;
 	}
 
-	// Removes the pickup block that the player was on top on from the scene
+	// Remove the pickup block that the player was on top of from the scene
 	void RemovePickUpBlock() {
 		GameObject[] pickups = GameObject.FindGameObjectsWithTag ("PickUp");
 		foreach (GameObject pickup in pickups) {
@@ -167,6 +172,5 @@ public class PlayerManager : MonoBehaviour {
 			}
 		}
 	}
-
 		
 }
