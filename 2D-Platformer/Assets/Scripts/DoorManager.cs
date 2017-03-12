@@ -9,13 +9,12 @@ using UnityEngine;
 public class DoorManager : MonoBehaviour {
 
 	public Sprite spriteOpen;
-
 	private SpriteRenderer sr; 
 
-	void Start () {
+	void Awake () {
 		sr = GetComponent<SpriteRenderer>();
 	}
-	
+
 	public void OpenDoor() {
 		sr.sprite = spriteOpen;
 		tag = "OpenDoor";
