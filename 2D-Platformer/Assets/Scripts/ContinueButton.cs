@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+ * This class controls the continue button within the pause panel
+ */
 public class ContinueButton : MonoBehaviour {
 
-	public Button continueButton;
+	public Button continueButton; 
 
 	void Start () {
 		Button btn = continueButton.GetComponent<Button>();
@@ -14,6 +17,6 @@ public class ContinueButton : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		MenuManager.DisablePause ();
+		MenuManager.DisablePause (); //references menu manager class using a singleton pattern
 	}
 }

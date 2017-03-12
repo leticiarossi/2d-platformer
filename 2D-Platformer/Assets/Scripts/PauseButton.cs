@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This class controls the pause button in the UI
+ */
+
 public class PauseButton : MonoBehaviour {
 
 		public Button pauseButton;
@@ -13,6 +17,6 @@ public class PauseButton : MonoBehaviour {
 		}
 
 		void TaskOnClick(){
-		MenuManager.EnablePause ();
+			MenuManager.EnablePause ();
 		}
 	}
