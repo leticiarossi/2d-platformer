@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
 	}
 
 	public static void LevelDone(int scene){
-		if (scene < 8) {
+		if (scene < 7) {
 			instance.NextLevelPanel.SetActive (true);
 			Time.timeScale = 0; //pause background when panel is present
 		} else {
